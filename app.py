@@ -8,7 +8,7 @@ import streamlit as st
 import plotly.express as px
 import matplotlib.pyplot as plt
 
-st.set_page_config(page_title='Croper System ● Gurmehar Singh ● CO21318', page_icon='🌱', layout='centered', initial_sidebar_state='collapsed')
+st.set_page_config(page_title='Croper System ● Gurmehar Singh ● CO21318', page_icon='🌱', layout='centered')
 
 def load_model(modelfile):
     loaded_model = pickle.load(open(modelfile, 'rb'))
@@ -31,7 +31,7 @@ def main():
     
     dset = pd.read_csv(file_path)
 
-    menu = ['Home', 'Analysis', 'Recommend', 'About']
+    menu = ['Crop Predictor', 'Home', 'Analysis', 'About']
     choice = st.sidebar.selectbox("Menu", menu)
 
     if choice == 'Home':
@@ -84,7 +84,7 @@ def main():
             sns.histplot(dset[col], kde=True, ax=ax3)
             st.pyplot(fig3)
 
-    elif choice == 'Recommend':
+    elif choice == 'Crop Predictor':
         col1, col2 = st.columns([2, 2])
 
         with col1:
@@ -146,7 +146,7 @@ def main():
         st.markdown(about_html, unsafe_allow_html=True)
 
         st.write('''
-                    Welcome to the Croper System, a cutting-edge AI-driven tool designed to assist farmers in making informed decisions about crop selection. Our system leverages advanced machine learning algorithms to analyze soil and environmental conditions, providing precise crop recommendations tailored to your farm’s unique characteristics.
+                    Welcome to the Croper System, a cutting-edge AI-driven tool designed to assist farmers in making informed decisions about crop selection. Our system leverages advanced machine learning algorithms to analyze soil and environmental conditions, providing precise crop recommendations tailored to your farm's unique characteristics.
                 ''')
         
         about_html = '''
