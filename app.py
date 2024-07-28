@@ -8,7 +8,7 @@ import streamlit as st
 import plotly.express as px
 import matplotlib.pyplot as plt
 
-st.set_page_config(page_title='Croper System ● Gurmehar Singh ● CO21318', page_icon='🌱', layout='centered')
+st.set_page_config(page_title='Cropper System ● Gurmehar Singh ● CO21318', page_icon='🌱', layout='centered')
 
 def load_model(modelfile):
     loaded_model = pickle.load(open(modelfile, 'rb'))
@@ -17,10 +17,10 @@ def load_model(modelfile):
 def main():
     title_html = '''
         <div>
-            <h1 style='color: MEDIUMSEAGREEN; text-align: left;'>🌱 -Croper System- 🌱</h1>
+            <h1 style='color: MEDIUMSEAGREEN; text-align: left; margin-top: 0px;'>🌱 -Cropper System- 🌱</h1>
         <div/>
     '''
-
+    st.markdown('''<br/>''', unsafe_allow_html=True)
     st.markdown(title_html, unsafe_allow_html=True)
 
     file_path = 'Crop_recommendation.csv'
@@ -140,13 +140,13 @@ def main():
     elif choice == 'About':
         about_html = '''
         <div>
-            <h3 style='color: white; text-align: left;'>About Croper Sytem</h3>
+            <h3 style='color: white; text-align: left;'>About Cropper Sytem</h3>
         <div/>
     '''
         st.markdown(about_html, unsafe_allow_html=True)
 
         st.write('''
-                    Welcome to the Croper System, a cutting-edge AI-driven tool designed to assist farmers in making informed decisions about crop selection. Our system leverages advanced machine learning algorithms to analyze soil and environmental conditions, providing precise crop recommendations tailored to your farm's unique characteristics.
+                    Welcome to the Cropper System, a cutting-edge AI-driven tool designed to assist farmers in making informed decisions about crop selection. Our system leverages advanced machine learning algorithms to analyze soil and environmental conditions, providing precise crop recommendations tailored to your farm's unique characteristics.
                 ''')
         
         about_html = '''
@@ -174,7 +174,7 @@ def main():
         st.markdown(about_html, unsafe_allow_html=True)
         
         st.write('''
-                    At Croper System, our mission is to empower farmers with the tools and knowledge they need to optimize crop production and sustainability. By integrating technology and agriculture, we aim to contribute to the advancement of precision farming and ensure food security.
+                    At Cropper System, our mission is to empower farmers with the tools and knowledge they need to optimize crop production and sustainability. By integrating technology and agriculture, we aim to contribute to the advancement of precision farming and ensure food security.
                 ''')
         
         about_html = '''
@@ -187,13 +187,13 @@ def main():
         st.write('''
                     Please note that while our recommendations are based on sophisticated algorithms and extensive data analysis, they are intended for educational purposes. We advise farmers to consider local conditions and expert advice before making final decisions.
 
-                    Thank you for using Croper System. We are committed to continuous improvement and welcome your feedback.
+                    Thank you for using Cropper System. We are committed to continuous improvement and welcome your feedback.
                 ''')
         
         st.markdown('''<br/>''', unsafe_allow_html=True)
 
         st.write('''
-                    🌾 © 2024 Croper System • Created by Gurmehar Singh • CO21318 🌾
+                    🌾 © 2024 Cropper System • Created by Gurmehar Singh • CO21318 🌾
                 ''')
     
 hide_menu_style = '''
