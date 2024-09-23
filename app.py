@@ -7,21 +7,78 @@ import seaborn as sns
 import streamlit as st
 import plotly.express as px
 import matplotlib.pyplot as plt
+import base64
 
-st.set_page_config(page_title='Cropper System ● Gurmehar Singh ● CO21318', page_icon='🌱', layout='centered')
+st.set_page_config(page_title='Cropper System ● Gurmehar Singh ● CO21318', page_icon='🌱', layout='centered', initial_sidebar_state="collapsed")
 
 def load_model(modelfile):
     loaded_model = pickle.load(open(modelfile, 'rb'))
     return loaded_model
 
+# Function to encode the image
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+# Set background image from a local file
+def set_background(png_file):
+    bin_str = get_base64_of_bin_file(png_file)
+    background_image = f"""
+    <style>
+    .stApp {{
+        background-image: url("data:image/png;base64,{bin_str}");
+        background-size: cover;
+    }}
+
+    /* Hide background image for mobile view */
+    @media (max-width: 768px) {{
+        .stApp {{
+            background-image: none;
+            background-color: black;
+        }}
+    }}
+    </style>
+    """
+    st.markdown(background_image, unsafe_allow_html=True)
+
 def main():
-    title_html = '''
-        <div>
-            <h1 style='color: MEDIUMSEAGREEN; text-align: left; margin-top: 0px;'>🌱 -Cropper System- 🌱</h1>
-        <div/>
+    header_html = '''
+            <style>
+                /* Custom header styles */
+                .custom-header {
+                    background-color: black;  /* Dark background */
+                    color: white;
+                    text-align: center;
+                    margin-top: -110px;
+                    padding: 0px;
+                    font-size: 40px;
+                    # border-bottom: 2px solid white;  /* Example color */
+                    font-family: cursive;
+                }
+            </style>
+            
+            <div class="custom-header">
+                🌾 -Cropper System- 🌾
+            </div>
+        '''
+    st.markdown(header_html, unsafe_allow_html=True)
+    hide_streamlit_style = '''
+        <style>
+            header {visibility: hidden;}
+        </style>
     '''
-    st.markdown('''<br/>''', unsafe_allow_html=True)
-    st.markdown(title_html, unsafe_allow_html=True)
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+    set_background('crop.png')
+    
+    # title_html = '''
+    #     <div>
+    #         <h1 style='color: MEDIUMSEAGREEN; text-align: left; margin-top: 0px;'>-Cropper System-</h1>
+    #     <div/>
+    # '''
+    # st.markdown('''<br/>''', unsafe_allow_html=True)
+    # st.markdown(title_html, unsafe_allow_html=True)
 
     file_path = 'Crop_recommendation.csv'
 
@@ -31,11 +88,11 @@ def main():
     
     dset = pd.read_csv(file_path)
 
-    menu = ['Crop Predictor', 'Home', 'Analysis', 'About']
+    menu = ['Crop Predictor', 'Dataset', 'Analysis', 'About']
     choice = st.sidebar.selectbox("Menu", menu)
 
-    if choice == 'Home':
-        st.subheader('Home') 
+    if choice == 'Dataset':
+        st.subheader('Dataset') 
         st.dataframe(dset.head(10))
 
     elif choice == 'Analysis':
@@ -203,8 +260,6 @@ hide_menu_style = '''
                 }
             </style>
         '''
-
-
 
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
