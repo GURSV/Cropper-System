@@ -5,4 +5,3 @@ seaborn
 plotly
 matplotlib
 scikit-learn
-base64
