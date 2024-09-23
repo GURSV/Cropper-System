@@ -54,12 +54,12 @@ def main():
                     padding: 0px;
                     font-size: 40px;
                     # border-bottom: 2px solid white;  /* Example color */
-                    font-family: cursive;
+                    font-family: monospace;
                 }
             </style>
             
             <div class="custom-header">
-                🌾 -Cropper System- 🌾
+                🌾 Cropper System 🌾
             </div>
         '''
     st.markdown(header_html, unsafe_allow_html=True)
